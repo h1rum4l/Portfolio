@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><title>Portfolio responsive checks</title><style>body{margin:0;background:#ddd;font:14px Arial}header{padding:12px;position:sticky;top:0;background:white;z-index:2}button{padding:10px}iframe{border:0;display:block;transform-origin:top left}</style><header><button onclick="size(360,800)">360</button><button onclick="size(768,1024)">768</button><button onclick="size(1280,900)">1280</button><button onclick="size(1920,1080)">1920</button><button onclick="size(2560,1440)">2560</button><button onclick="run()">Run checks</button><button onclick="fallbacks()">Fallback checks</button><pre id="results" style="white-space:pre-wrap;font-size:11px"></pre></header><iframe id="site" title="Portfolio test viewport" src="../outputs/index.html" width="360" height="800"></iframe><script>function size(w,h){site.width=w;site.height=h;site.style.transform='scale('+Math.min(1,(innerWidth-20)/w)+')'}const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function run(){
+ const d=site.contentDocument,w=site.contentWindow,out=[];function check(name,ok){out.push((ok?'PASS ':'FAIL ')+name);results.textContent=out.join(' | ')}
+ for(const width of [360,768,1280,1920,2560]){
+ size(width,900);await wait(250);
+ check(width+'px document fits',d.documentElement.scrollWidth<=d.documentElement.clientWidth+1);
+ check(width+'px hero names fit',[...d.querySelectorAll('.name-line')].every(e=>{let r=e.getBoundingClientRect();return r.left>=0&&r.right<=d.documentElement.clientWidth+1}));
+ check(width+'px headings fit',[...d.querySelectorAll('h2 .line-inner')].every(e=>e.scrollWidth<=e.clientWidth+1));
+ }
+ size(360,800);await wait(100);
+ const btn=d.querySelector('.menu-toggle');btn.click();await wait(500);
+ check('menu opens and protects background',btn.getAttribute('aria-expanded')==='true'&&d.querySelector('main').inert);
+ d.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));await wait(500);
+ check('Escape closes menu and returns focus',btn.getAttribute('aria-expanded')==='false'&&!d.querySelector('main').inert&&d.activeElement===btn);
+ const tabs=[...d.querySelectorAll('[role=tab]')];tabs[0].focus();tabs[0].dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
+ check('arrow key selects next role',tabs[1].getAttribute('aria-selected')==='true'&&d.querySelector('#role-copy').textContent.includes('Artha'));
+ for(const t of tabs)t.click();check('all roles selectable',tabs[5].getAttribute('aria-selected')==='true'&&d.querySelector('#role-copy').textContent.includes('Young Professionals'));
+ const img=d.querySelector('.portrait img'),old=img.src;img.src='missing-test-image.webp';await wait(350);check('missing portrait fallback',img.closest('figure').classList.contains('missing')&&!img.previousElementSibling.hidden);img.src=old;
+ const pause=d.querySelector('.motion-toggle');pause.click();check('ambient pause control',d.body.classList.contains('paused'));pause.click();
+ check('preloader completes',d.querySelector('.preloader').hidden&&!d.body.classList.contains('loading'));
+ check('Lenis loaded',!!w.lenis);
+ check('stats term precedes value',[...d.querySelectorAll('.stat')].every(e=>e.firstElementChild.tagName==='DT'));
+ for(const image of d.images){image.loading='eager'}await wait(500);check('all local images load',[...d.images].every(i=>i.complete&&i.naturalWidth>0));
+ tabs[0].click();w.scrollTo(0,0);out.push('DONE');results.textContent=out.join(' | ');
+}
+async function fallbacks(){let out=[];for(const name of ['reduced','offline']){site.src='../work/'+name+'.html';await new Promise(r=>site.onload=r);await wait(name==='offline'?4000:500);const d=site.contentDocument,w=site.contentWindow;out.push(name+': '+(!w.lenis&&d.querySelector('.preloader').hidden&&!d.querySelector('main').inert?'PASS':'FAIL'));if(name==='reduced'){out.push('reduced animation: '+(w.getComputedStyle(d.querySelector('.marquee-track')).animationName==='none'?'PASS':'FAIL'))}}results.textContent=out.join(' | ');site.src='../outputs/index.html'}</script>
