@@ -1,155 +1,44 @@
-<div align="center">
+# Hirumal Marasinghe — portfolio
 
-<img src="assets/og-image.jpg" alt="Hirumal Marasinghe — Portfolio" width="100%" />
+One standalone index.html with inline CSS and JavaScript, local images and optional fonts. Your logo, portrait feathering, event photographs and contact composer are retained. Three.js and Lenis load from pinned CDNs; Google Fonts supplies the fallback typography. There is no React app, npm dependency installation or required build step.
 
-<br/>
+## Preview and checks
 
-# 🌊 Hirumal Marasinghe
+Open index.html directly for a basic preview, or with Node installed:
 
-### Data · Design · Community · Leadership
+    node --test tests/site.test.mjs
+    node scripts/build.mjs
+    node scripts/serve.mjs --base /Portfolio/
 
-*A student perspective. A shared purpose.*
+Visit http://127.0.0.1:3000/Portfolio/. Optional npm test / npm run build / npm run preview aliases do the same; npm install is unnecessary. The local server binds only to your computer. Delete and rebuild dist to refresh it; it is generated output.
 
-<br/>
+## Publish
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-hirumal--marasinghe-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hirumal-marasinghe-111a7135a)
-[![Instagram](https://img.shields.io/badge/Instagram-@__h1rum4l__-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_h1rum4l_)
-[![Facebook](https://img.shields.io/badge/Facebook-Hirumal%20Marasinghe-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/share/18V2zboYzj/?mibextid=wwXIfr)
-[![Email](https://img.shields.io/badge/Email-Get%20in%20touch-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:marasinghehirumal4366@gmail.com)
+Upload ONLY the contents of dist to your hosting provider. For GitHub Pages, publish that folder with your chosen Pages deployment method. The page also works at a repository URL because all local asset references are relative. No deployment or push has been performed by this repair.
 
-</div>
+The canonical and sharing URLs assume https://h1rum4l.github.io/Portfolio/. If using a custom domain, set SITE_URL to its full HTTPS address before running the packaging script; it rewrites those URLs in dist/index.html. Alternatively edit those three meta/link values in index.html. For Netlify manual hosting, drop dist into its deployment UI.
 
----
+Do not upload project backups, raw LinkedIn exports, extracted/, .aistudio/ or ZIPs. Packaging copies only index.html, top-level image assets and optional font files. Previously committed exports may remain in Git history or existing deployments; removing working files does not erase history or unpublish an old site.
 
-## 👋 About Me
+## Fonts
 
-I'm a **BSc (Hons) Data Science and Business Analytics** student at **General Sir John Kotelawala Defence University (KDU)**, Sri Lanka (2025–2029).
+Add your licensed Pirulen files at fonts/pirulen.woff2 and optionally fonts/pirulen.ttf. They were not supplied. Michroma is the intended fallback; missing Pirulen requests do not prevent the site working. Do not download or commit an unlicensed font.
 
-My interests span **machine learning**, **design**, and **volunteer work**. Alongside my studies, I contribute to student communities through finance, logistics, and leadership roles.
+## Contact form
 
-| | |
-|---|---|
-| 🎓 **Studying** | BSc (Hons) Data Science and Business Analytics, KDU |
-| 📍 **Based in** | Sri Lanka 🇱🇰 |
-| 🔭 **Interests** | Machine learning · Design · Community work |
-| 💬 **Values** | Respect · Leadership · Communication · Human connection |
+The form validates name, contact and message, then opens the visitor's default email application. It does not submit to a backend or guarantee delivery. Copy Message is an alternative when no mail application is configured.
 
----
+## Facts still needed
 
-## 🏆 Achievements & Initiatives
+- Artha 2.0: year/date, finance responsibilities and verified project outcomes.
+- Cre8X 2.0: year/date, finance responsibilities and verified event outcomes.
+- Step Into Industry 4.0: year/date, logistics responsibilities and verified event outcomes.
+- BCS Assistant Treasurer: confirm 2025–2026 or 2026/27 term; responsibilities and outcomes.
+- Membership Task Force: exact affiliation, chair term, responsibilities and outcomes.
+- IEEE Young Professionals Sri Lanka: dates, role, contributions and outcomes.
 
-| | Initiative | Role | Year |
-|---|---|---|---|
-| 🌱 | **Artha 2.0** — community initiative bridging the digital divide for rural students | Finance Co-Lead | 2026 |
-| 🎨 | **Cre8X 2.0** — inter-university UI/UX designathon by the BCS Student Branch at KDU | Finance Lead | 2025 |
-| 🏭 | **Step Into Industry 4.0** — connecting academia and industry | Logistics Team | 2026 |
-| ⭐ | **Volunteer of the Month** — IEEE Student Branch, KDU | Recognition | March 2026 |
+Unverified event and membership metrics have been removed. March 2026 volunteer recognition, the March 2025 certification and education dates remain as documented. Image placeholders appear only if an image is missing.
 
----
+## Motion and resilience
 
-## 🧭 Leadership & Roles
-
-- 💼 **Assistant Treasurer** — British Computer Society (BCS) Student Chapter, KDU *(Feb 2026 – Present)*
-- 🤝 **Volunteer & Membership Task Force Chair** — IEEE Student Branch, KDU
-- 🌍 **Community involvement** — IEEE Young Professionals Sri Lanka
-- 💰 **Finance Co-Lead** — Artha 2.0
-- 💰 **Finance Lead** — Cre8X 2.0
-- 📦 **Logistics Team** — Step Into Industry 4.0
-
----
-
-## 📜 Certification
-
-🤖 **Introduction to Artificial Intelligence** — SLIIT City UNI
-Issued March 2025 · Credential ID: `SCU_IAI_632`
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=react,ts,vite,tailwind,threejs,html,css,nodejs&theme=dark" alt="Tech stack icons" />
-
-</div>
-
-| Layer | Tools |
-|---|---|
-| ⚛️ **Framework** | React 19 + TypeScript |
-| ⚡ **Build tool** | Vite |
-| 🎨 **Styling** | Tailwind CSS 4 |
-| ✨ **3D & motion** | Three.js (starfield hero), Motion |
-| 🔤 **Typography** | Poppins · Inter · Michroma |
-
----
-
-## 🎨 Design Notes
-
-- 🌌 **Deep-sea palette** — dark oceanic background (`#020B14`) with a cinematic, atmospheric feel
-- 🖼️ **Feathered portrait** — hero portrait dissolves smoothly into the background using CSS alpha masking
-- 🌠 **Three.js starfield** drifting behind the hero section
-- 📱 **Fully responsive** with mobile-specific assets
-- ⏸️ **Pause ambient motion** control for accessibility
-
----
-
-## 🚀 Run Locally
-
-**Prerequisites:** [Node.js](https://nodejs.org/)
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
-
-# 2. Install dependencies
-npm install
-
-# 3. Start the dev server
-npm run dev
-```
-
-The site will be available at **http://localhost:3000**.
-
-```bash
-# Production build
-npm run build
-
-# Preview the production build
-npm run preview
-```
-
----
-
-## 📁 Project Structure
-
-```text
-├── assets/             # Portrait, logos, backgrounds, achievement images
-├── public/assets/      # Static assets served by Vite
-├── src/                # React entry (main.tsx, App.tsx, index.css)
-├── index.html          # Single-file cinematic portfolio page
-├── vite.config.ts
-├── tsconfig.json
-└── package.json
-```
-
----
-
-## 📬 Let's Connect
-
-Get in touch about **data**, **design**, or **community work**.
-
-<div align="center">
-
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hirumal-marasinghe-111a7135a)
-[![Instagram](https://img.shields.io/badge/-Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/_h1rum4l_)
-[![Facebook](https://img.shields.io/badge/-Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/share/18V2zboYzj/?mibextid=wwXIfr)
-[![Gmail](https://img.shields.io/badge/-Gmail-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:marasinghehirumal4366@gmail.com)
-
-<br/>
-
-**Data. Design. Human connection.**
-
-© 2026 Hirumal Marasinghe
-
-</div>
+System reduced motion skips the preloader and GPU scene and disables entrance/ambient animation. The footer button pauses ambient motion; hidden tabs also stop GPU rendering. If WebGL is unavailable, the static ocean background remains. Navigation and content still work if the animation CDN cannot be reached.
